@@ -42,6 +42,13 @@ public class GetMembers {
         return false;
     }
 
+    public static ArrayList<Member> getAllMembers() {
+        return members;
+    }
+    public static void emptyMembersList() {
+        members.clear();
+    }
+
     public static HttpResponse<String> getMembersPage() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -84,7 +91,7 @@ public class GetMembers {
         }
     }
 
-    private static void scrapeMembers() {
+    public static void scrapeMembers() {
         HttpResponse<String> response;
         try {
             response = getMembersPage();
@@ -96,7 +103,7 @@ public class GetMembers {
         }
     }
 
-    private static void saveMembersToFile() {
+    public static void saveMembersToFile() {
         // encrypt the members arraylist and save it to a file
         for (Member member : members) {
             // encrypt the member ID to use as a filename
@@ -113,7 +120,7 @@ public class GetMembers {
         }
     }
 
-    private static void loadMembersFromFile() {
+    public static void loadMembersFromFile() {
         System.out.println("[DEBUG] Loading members from files...");
         // load the members from their files
         // search the data directory for files ending in .member
